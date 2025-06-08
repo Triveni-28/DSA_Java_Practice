@@ -1,1 +1,60 @@
+public class Bit_Manipulation_problems{
+    public static void main(String[] args){
+        int[] arr = {1, 2, 2, 3, 3, 3};
+        int ans = 0;
+        for(int i = 0; i < arr.length; i++) {
+            ans = ans ^ arr[i];
+        }
+        System.out.println("XOR of all elements: " + ans);
 
+        // Example usage of other methods:
+        int n = 16;
+        System.out.println("Is power of two (" + n + "): " + isPowerOfTwo(n));
+        System.out.println("Count set bits (" + n + "): " + countSetBits(n));
+        System.out.println("Toggle bit 2 of " + n + ": " + toggleBit(n, 2));
+        System.out.println("Set bit 3 of " + n + ": " + setBit(n, 3));
+        System.out.println("Clear bit 4 of " + n + ": " + clearBit(n, 4));
+        System.out.println("Rightmost set bit of " + n + ": " + rightmostSetBit(n));
+        System.out.println("Opposite signs (5, -3): " + oppositeSigns(5, -3));
+    }
+
+    // Check if a number is a power of two
+    public static boolean isPowerOfTwo(int n) {
+        return n > 0 && (n & (n - 1)) == 0;
+    }
+
+    // Count set bits in a number
+    public static int countSetBits(int n) {
+        int count = 0;
+        while (n > 0) {
+            count += n & 1;
+            n >>= 1;
+        }
+        return count;
+    }
+
+    // Toggle ith bit of a number
+    public static int toggleBit(int n, int i) {
+        return n ^ (1 << i);
+    }
+
+    // Set ith bit of a number
+    public static int setBit(int n, int i) {
+        return n | (1 << i);
+    }
+
+    // Clear ith bit of a number
+    public static int clearBit(int n, int i) {
+        return n & (~(1 << i));
+    }
+
+    // Find the rightmost set bit in a number
+    public static int rightmostSetBit(int n) {
+        return n & (-n);
+    }
+
+    // Check if two numbers have opposite signs
+    public static boolean oppositeSigns(int x, int y) {
+        return (x ^ y) < 0;
+    }
+}
