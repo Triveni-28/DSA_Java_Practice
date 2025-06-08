@@ -1,0 +1,153 @@
+public class Main {
+
+    public static void String(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // //Palindrome check using recursion
+        System.out.println("Enter a string to check for palindrome:");
+        String s = sc.nextLine();
+        System.out.println("Is Palindrome: " + isPalindrome(0, s));
+
+        // //Reverse a string using recursion
+        System.out.println("Reversed String: " + reverseString(s));
+
+        // //Print all substrings using recursion
+        System.out.println("Substrings:");
+        printSubstrings(s, "", 0);
+
+        // //Check if two strings are anagrams
+        System.out.println("Enter two strings to check for anagram:");
+        String s1 = sc.next();
+        String s2 = sc.next();
+        System.out.println("Are Anagrams: " + areAnagrams(s1, s2));
+
+        // //Count vowels in a string using recursion
+        System.out.println("Vowel Count: " + countVowels(s, 0));
+
+        // //Check if string contains only digits
+        System.out.println("Contains only digits: " + isNumeric(s, 0));
+
+        // //Remove all vowels from a string
+        System.out.println("String without vowels: " + removeVowels(s));
+
+        // //Check if a string is a valid palindrome ignoring non-alphanumeric characters
+        System.out.println("Is valid alphanumeric palindrome: " + isAlphanumericPalindrome(s));
+
+        // //Check if one string is a rotation of another
+        System.out.println("Enter two strings to check for rotation:");
+        sc.nextLine(); // clear buffer
+        String r1 = sc.nextLine();
+        String r2 = sc.nextLine();
+        System.out.println("Is Rotation: " + isRotation(r1, r2));
+
+        // //Toggle case of each character
+        System.out.println("Toggled case: " + toggleCase(s));
+
+        // //Compress string using counts (e.g., aaabb → a3b2)
+        System.out.println("Compressed String: " + compressString("aaabbbcdd"));
+
+        // //Check if string is made of repeated substring pattern
+        System.out.println("Is Repeated Pattern: " + isRepeatedSubstringPattern("abab"));
+    }
+
+    // //Palindrome check
+    public static boolean isPalindrome(int i, String s) {
+        if (i >= s.length() / 2) return true;
+        if (s.charAt(i) != s.charAt(s.length() - i - 1)) return false;
+        return isPalindrome(i + 1, s);
+    }
+
+    // //Reverse string
+    public static String reverseString(String s) {
+        if (s.isEmpty()) return s;
+        return reverseString(s.substring(1)) + s.charAt(0);
+    }
+
+    // //Print all substrings
+    public static void printSubstrings(String s, String curr, int i) {
+        if (i == s.length()) {
+            if (!curr.isEmpty()) System.out.println(curr);
+            return;
+        }
+        printSubstrings(s, curr + s.charAt(i), i + 1);
+        printSubstrings(s, curr, i + 1);
+    }
+
+    // //Check anagrams
+    public static boolean areAnagrams(String s1, String s2) {
+        if (s1.length() != s2.length()) return false;
+        int[] count = new int[26];
+        for (char c : s1.toCharArray()) count[c - 'a']++;
+        for (char c : s2.toCharArray()) count[c - 'a']--;
+        for (int val : count) if (val != 0) return false;
+        return true;
+    }
+
+    // //Count vowels
+    public static int countVowels(String s, int i) {
+        if (i == s.length()) return 0;
+        char c = Character.toLowerCase(s.charAt(i));
+        int count = "aeiou".indexOf(c) != -1 ? 1 : 0;
+        return count + countVowels(s, i + 1);
+    }
+
+    // //Only digits
+    public static boolean isNumeric(String s, int i) {
+        if (i == s.length()) return true;
+        if (!Character.isDigit(s.charAt(i))) return false;
+        return isNumeric(s, i + 1);
+    }
+
+    // //Remove vowels
+    public static String removeVowels(String s) {
+        return s.replaceAll("(?i)[aeiou]", "");
+    }
+
+    // //Valid alphanumeric palindrome
+    public static boolean isAlphanumericPalindrome(String s) {
+        String clean = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        return isPalindrome(0, clean);
+    }
+
+    // //Check rotation
+    public static boolean isRotation(String s1, String s2) {
+        if (s1.length() != s2.length()) return false;
+        return (s1 + s1).contains(s2);
+    }
+
+    // //Toggle case
+    public static String toggleCase(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (char c : s.toCharArray()) {
+            if (Character.isLowerCase(c)) sb.append(Character.toUpperCase(c));
+            else if (Character.isUpperCase(c)) sb.append(Character.toLowerCase(c));
+            else sb.append(c);
+        }
+        return sb.toString();
+    }
+
+    // //Compress string (e.g., aaabb → a3b2)
+    public static String compressString(String s) {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        while (i < s.length()) {
+            char current = s.charAt(i);
+            int count = 1;
+            while (i + 1 < s.length() && s.charAt(i + 1) == current) {
+                count++;
+                i++;
+            }
+            sb.append(current);
+            if (count > 1) sb.append(count);
+            i++;
+        }
+        return sb.toString();
+    }
+
+    // //Repeated substring pattern
+    public static boolean isRepeatedSubstringPattern(String s) {
+        String doubled = s + s;
+        String sub = doubled.substring(1, doubled.length() - 1);
+        return sub.contains(s);
+    }
+}
