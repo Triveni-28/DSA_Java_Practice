@@ -1,0 +1,26 @@
+public class Solution {
+    public boolean detectCapitalUse(String word) {
+        int n = word.length();
+        
+        // Case 1: All letters are uppercase
+        if (word.equals(word.toUpperCase())) {
+            return true;
+        }
+
+        // Case 2: All letters are lowercase
+        if (word.equals(word.toLowerCase())) {
+            return true;
+        }
+
+        // Case 3: Only the first letter is uppercase, rest are lowercase
+        char firstChar = word.charAt(0);
+        String rest = word.substring(1);
+
+        if (Character.isUpperCase(firstChar) && rest.equals(rest.toLowerCase())) {
+            return true;
+        }
+
+        // If none of the conditions matched, return false
+        return false;
+    }
+}
