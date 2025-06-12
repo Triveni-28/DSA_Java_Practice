@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> result = new ArrayList<>();
+
+        int lenS = s.length(), lenP = p.length();
+        if (lenP > lenS) return result; // No way to find anagram
+
+        int[] pCount = new int[26]; // Count for p
+        int[] sCount = new int[26]; // Count for sliding window in s
+
+        // Build initial counts
+        for (int i = 0; i < lenP; i++) {
+            pCount[p.charAt(i) - 'a']++;
+            sCount[s.charAt(i) - 'a']++;
+        }
+
+        // Compare initial window
+        if (Arrays.equals(pCount, sCount)) {
+            result.add(0);
+        }
+
+        // Slide the window over s
+        for (int i = lenP; i < lenS; i++) {
+            sCount[s.charAt(i) - 'a']++;                     // Add new char
+            sCount[s.charAt(i - lenP) - 'a']--;              // Remove old char
+
+            if (Arrays.equals(pCount, sCount)) {
+                result.add(i - lenP + 1);                    // Add starting index
+            }
+        }
+
+        return result;
+    }
+}
