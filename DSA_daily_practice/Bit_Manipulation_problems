@@ -58,3 +58,97 @@ public class Bit_Manipulation_problems{
         return (x ^ y) < 0;
     }
 }
+//find pair with minimum xor
+/*import java.util.Arrays;
+public class Main {
+    public static void findMinXORPair(int[] arr) {
+        Arrays.sort(arr); // Step 1: Sort the array
+        int minXor = Integer.MAX_VALUE;
+        int x = 0, y = 0;
+
+        // Step 2: Find min XOR between adjacent pairs
+        for (int i = 0; i < arr.length - 1; i++) {
+            int xor = arr[i] ^ arr[i + 1];
+            if (xor < minXor) {
+                minXor = xor;
+                x = arr[i];
+                y = arr[i + 1];
+            }
+        }
+
+        System.out.println("Pair with minimum XOR is: (" + x + ", " + y + ")");
+        System.out.println("Minimum XOR value is: " + minXor);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {9, 5, 3, 10};
+        findMinXORPair(arr);
+    }
+}*/
+//given an array.Find te xor of all te numbers were ith bit is set
+/*public class Main{
+    public static int xorWithIthBitSet(int[] arr, int i) {
+        int result = 0;
+        for (int num : arr) {
+            // Check if ith bit is set
+            if ((num & (1 << i)) != 0) {
+                result ^= num;
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {5, 3, 7};
+        int i = 1; // 1st bit
+        int xor = xorWithIthBitSet(arr, i);
+        System.out.println("XOR of numbers with bit " + i + " set: " + xor);
+    }
+}*/
+//given an array,all the numbers appear even number of times,except one
+/*public class Main{
+    public static int odd(int[] arr){
+        int result=0;
+        for(int num:arr){
+            result^=num;
+        }
+        return result;
+    }
+    public static void main(String[] args){
+        int[] arr={9,5,5,9,1};
+        int oddnum=odd(arr);
+        System.out.println(oddnum);
+    }
+}*/
+//given an array,fetch two numbers which are occuring odd number of times
+import java.util.*;
+
+/*public class Main{
+    public static void findTwoOddNumbers(int[] arr) {
+        int xor = 0;
+        for (int num : arr) {
+            xor ^= num; // Step 1: XOR of all elements = x ^ y
+        }
+
+        // Step 2: Get the rightmost set bit in xor
+        int rightmostSetBit = xor & -xor;
+
+        int x = 0, y = 0;
+        // Step 3: Divide elements into two groups
+        for (int num : arr) {
+            if ((num & rightmostSetBit) != 0) {
+                x ^= num; // Group where the bit is set
+            } else {
+                y ^= num; // Group where the bit is not set
+            }
+        }
+
+        // Step 4: x and y are the two odd occurring numbers
+        System.out.println("The two odd occurring numbers are: " + x + " and " + y);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {4, 2, 4, 5, 2, 3, 3, 1};
+        findTwoOddNumbers(arr);
+    }
+}*/
