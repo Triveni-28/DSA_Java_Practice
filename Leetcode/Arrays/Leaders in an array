@@ -1,0 +1,27 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {10, 12, 22, 3, 0, 6};
+        int[] leaders = findLeaders(arr);
+
+        System.out.println("Leaders: " + Arrays.toString(leaders));
+    }
+    public static int[] findLeaders(int[] arr) {
+        List<Integer> temp = new ArrayList<>();
+        int n = arr.length;
+        int maxFromRight = arr[n - 1];
+        temp.add(maxFromRight);
+        for (int i = n - 2; i >= 0; i--) {
+            if (arr[i] > maxFromRight) {
+                maxFromRight = arr[i];
+                temp.add(maxFromRight);
+            }
+        }
+        Collections.reverse(temp);
+        int[] result = new int[temp.size()];
+        for (int i = 0; i < temp.size(); i++) {
+            result[i] = temp.get(i);
+        }
+        return result;
+    }
+}
