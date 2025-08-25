@@ -1,0 +1,25 @@
+class Solution {
+    public int characterReplacement(String s, int k) {
+        int[] freq = new int[26];  // frequency of each char in window
+        int left = 0, maxCount = 0, result = 0;
+
+        for (int right = 0; right < s.length(); right++) {
+            // Step 1: include s[right] in window
+            freq[s.charAt(right) - 'A']++;
+            
+            // Step 2: update maxCount with most frequent char in window
+            maxCount = Math.max(maxCount, freq[s.charAt(right) - 'A']);
+            
+            // Step 3: if window is invalid, shrink it
+            while ((right - left + 1) - maxCount > k) {
+                freq[s.charAt(left) - 'A']--;
+                left++;
+            }
+            
+            // Step 4: update result
+            result = Math.max(result, right - left + 1);
+        }
+        
+        return result;
+    }
+}
