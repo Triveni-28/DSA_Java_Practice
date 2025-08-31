@@ -1,0 +1,29 @@
+class Solution {
+    public List<List<String>> partition(String s) {
+        List<List<String>> res=new ArrayList<>();
+        List<String> ans=new ArrayList<>();
+        func(0,s,ans,res);
+        return res;
+    }
+    void func(int index,String s,List<String> ans,List<List<String>> res){
+        if(index==s.length()){
+            res.add(new ArrayList<>(ans));
+            return;
+        }
+        for(int i=index;i<s.length();i++){
+            if(isPal(s,index,i)){
+                ans.add(s.substring(index,i+1));
+                func(i+1,s,ans,res);
+                ans.remove(ans.size()-1);
+            }
+        }
+    }
+    boolean isPal(String s,int left,int right){
+        while(left<=right){
+            if(s.charAt(left++)!=s.charAt(right--)){
+                return false;
+            }
+        }
+        return true;
+    }
+}
