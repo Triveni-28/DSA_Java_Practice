@@ -8,8 +8,8 @@ public class Main {
     }
     public static int[] findLeaders(int[] arr) {
         List<Integer> temp = new ArrayList<>();
-        int n = arr.length;
-        int maxFromRight = arr[n - 1];
+        int n = arr.length;                                                    time complexity:O(N)
+        int maxFromRight = arr[n - 1];                                          space complexity:O(N)
         temp.add(maxFromRight);
         for (int i = n - 2; i >= 0; i--) {
             if (arr[i] > maxFromRight) {
