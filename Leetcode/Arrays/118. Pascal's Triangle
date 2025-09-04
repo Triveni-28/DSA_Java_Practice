@@ -1,0 +1,23 @@
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> triangle = new ArrayList<>();
+
+        for (int row = 0; row < numRows; row++) {
+            List<Integer> temp = new ArrayList<>();
+            int val = 1;
+
+            // Build each row using nCr formula
+            for (int col = 0; col <= row; col++) {
+                temp.add(val);
+                // Relation: C(row, col+1) = C(row, col) * (row-col) / (col+1)
+                val = val * (row - col) / (col + 1);
+            }
+
+            triangle.add(temp);
+        }
+
+        return triangle;
+    }
+}
