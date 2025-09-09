@@ -1,0 +1,29 @@
+import java.util.Arrays.;
+class Node{
+Node links[]=new Node[26];
+boolean contains(char ch){
+return link[ch-'a]!=null;
+}
+void put(char ch,Node node){
+link[ch-'a']=node;
+}
+Node get(char ch){
+return link[ch-'a'];
+}
+};
+Class count(String s){
+int cnt=0;
+Nde root=new Node();
+int n=s.length();
+for(int i=0;i<n;i++){
+Node node=root;
+for(int j=i;j<n;j++){
+if(!node.contains(s.charAt(j))){
+node.put(s.charAt(i),new Node);
+cnt++;
+}
+node=node.get(s.charAt(i));
+}
+}
+return cnt+1;
+}
