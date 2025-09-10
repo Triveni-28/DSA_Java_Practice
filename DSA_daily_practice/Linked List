@@ -39,4 +39,17 @@ static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int dat
         return temp;
 
     }
-//
+//Hackerrank-insert at end
+static SinglyLinkedListNode insertNodeAtTail(SinglyLinkedListNode head, int data) {
+        SinglyLinkedListNode last=new SinglyLinkedListNode(data);
+        if(head==null)return last;
+        SinglyLinkedListNode temp=head;
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=last;
+        return head;
+
+
+    }
+
