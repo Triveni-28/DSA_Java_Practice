@@ -52,4 +52,30 @@ static SinglyLinkedListNode insertNodeAtTail(SinglyLinkedListNode head, int data
 
 
     }
+//Hackerrank-insert at specific position
+public static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode llist, int data, int position) {
+    // Create new node
+    SinglyLinkedListNode insert = new SinglyLinkedListNode(data);
 
+    // Case: insert at head
+    if (position == 0) {
+        insert.next = llist;
+        return insert;
+    }
+
+    // Traverse to the node before the position
+    SinglyLinkedListNode temp = llist;
+    int count = 0;
+    while (temp != null) {
+        if (count == position - 1) {
+            insert.next = temp.next;
+            temp.next = insert;
+            break; // insertion done
+        }
+        temp = temp.next;
+        count++;
+    }
+
+    return llist;
+    
+}
