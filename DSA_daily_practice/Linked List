@@ -1,0 +1,42 @@
+//Hackerrank-For each node, print its data value on a new line
+static void printLinkedList(SinglyLinkedListNode head) {
+        SinglyLinkedListNode temp=head;
+        while(temp!=null){
+            System.out.println(temp.data);
+            temp=temp.next;
+        }
+}
+//Hackerrank-Delete the node
+public static SinglyLinkedListNode deleteNode(SinglyLinkedListNode llist, int position) {
+    // Write your code here
+    if(llist==null)return llist;
+    if(position==1){
+        SinglyLinkedListNode temp=llist;
+        llist=llist.next;
+        return llist;
+    }
+    int count=0;
+    SinglyLinkedListNode temp=llist;
+    SinglyLinkedListNode prev=null;
+    while(temp!=null){
+        count++;
+        if(count==position){
+            prev.next.next=prev.next.next.next;
+            break;
+        }
+        prev=temp;
+        temp=temp.next;
+    }
+    return llist;
+    
+    }
+
+}
+//Hackerrank-insert at first
+static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data) {
+        SinglyLinkedListNode temp=new SinglyLinkedListNode(data);
+        temp.next=llist;
+        return temp;
+
+    }
+//
