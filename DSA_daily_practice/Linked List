@@ -79,3 +79,39 @@ public static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode lli
     return llist;
     
 }
+@Doubly Linked List
+//hackerrank-inserting a node into sorted linkedlist
+public static DoublyLinkedListNode sortedInsert(DoublyLinkedListNode llist, int data) {
+    DoublyLinkedListNode newNode = new DoublyLinkedListNode(data);
+
+    // Case 1: Empty list
+    if (llist == null) {
+        return newNode;
+    }
+
+    // Case 2: Insert at head
+    if (data < llist.data) {
+        newNode.next = llist;
+        llist.prev = newNode;
+        return newNode;
+    }
+
+    DoublyLinkedListNode temp = llist;
+
+    // Traverse until we find the correct position
+    while (temp.next != null && temp.next.data < data) {
+        temp = temp.next;
+    }
+
+    // Insert after temp
+    newNode.next = temp.next;
+    newNode.prev = temp;
+    temp.next = newNode;
+
+    if (newNode.next != null) {
+        newNode.next.prev = newNode;
+    }
+
+    return llist;
+}
+//
